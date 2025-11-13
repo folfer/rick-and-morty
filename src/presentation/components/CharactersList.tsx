@@ -23,6 +23,7 @@ interface CharactersListProps {
     loadMoreRef: React.RefObject<HTMLDivElement | null>;
     showScrollTop: boolean;
     onScrollToTop: () => void;
+    hasMore: boolean;
 }
 
 export const CharactersList = ({
@@ -36,6 +37,7 @@ export const CharactersList = ({
     loadMoreRef,
     showScrollTop,
     onScrollToTop,
+    hasMore,
 }: CharactersListProps) => {
     return (
         <div className="min-h-screen">
@@ -57,9 +59,9 @@ export const CharactersList = ({
 
                             {loadingMore && <LoadingSpinner />}
 
-                            <div ref={loadMoreRef} className="h-4" />
+                            {hasMore && <div ref={loadMoreRef} className="h-4" />}
 
-                            {!loadingMore && characters.length > 0 && (
+                            {!loadingMore && !hasMore && characters.length > 0 && (
                                 <EndOfListMessage totalCount={characters.length} />
                             )}
                         </div>

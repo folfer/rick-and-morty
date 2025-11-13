@@ -39,6 +39,7 @@ export const CharactersListContainer = () => {
             loadMoreRef={loadMoreRef}
             showScrollTop={showButton}
             onScrollToTop={scrollToTop}
+            hasMore={hasMore}
         />
     );
 };

@@ -26,18 +26,27 @@ export const useInfiniteScroll = ({
             if (target.isIntersecting && hasMore && !isLoading && !isLoadingRef.current) {
                 isLoadingRef.current = true;
                 onLoadMore();
-
-                setTimeout(() => {
-                    isLoadingRef.current = false;
-                }, 1000);
             }
         },
         [onLoadMore, hasMore, isLoading]
     );
 
     useEffect(() => {
+        if (!isLoading) {
+            const timer = setTimeout(() => {
+                isLoadingRef.current = false;
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [isLoading]);
+
+    useEffect(() => {
         const element = loadMoreRef.current;
         if (!element) return;
+
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+        }
 
         const option = {
             root: null,

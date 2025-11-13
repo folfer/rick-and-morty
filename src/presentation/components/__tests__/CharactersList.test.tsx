@@ -50,6 +50,7 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
@@ -69,6 +70,7 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
@@ -88,6 +90,7 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
@@ -108,6 +111,7 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
@@ -127,6 +131,7 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
@@ -147,6 +152,7 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
@@ -166,10 +172,51 @@ describe('CharactersList', () => {
                 loadMoreRef={mockLoadMoreRef as any}
                 showScrollTop={false}
                 onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
             />
         );
 
         expect(screen.getByText('Loading more characters...')).toBeInTheDocument();
+    });
+
+    it('shows end message when hasMore is false', () => {
+        render(
+            <CharactersList
+                characters={mockCharacters}
+                loading={false}
+                loadingMore={false}
+                error={null}
+                filters={mockFilters}
+                onFiltersChange={mockOnFiltersChange}
+                onReset={mockOnReset}
+                loadMoreRef={mockLoadMoreRef as any}
+                showScrollTop={false}
+                onScrollToTop={mockOnScrollToTop}
+                hasMore={false}
+            />
+        );
+
+        expect(screen.getByText(/You've reached the end of the multiverse!/)).toBeInTheDocument();
+    });
+
+    it('does not show end message when hasMore is true', () => {
+        render(
+            <CharactersList
+                characters={mockCharacters}
+                loading={false}
+                loadingMore={false}
+                error={null}
+                filters={mockFilters}
+                onFiltersChange={mockOnFiltersChange}
+                onReset={mockOnReset}
+                loadMoreRef={mockLoadMoreRef as any}
+                showScrollTop={false}
+                onScrollToTop={mockOnScrollToTop}
+                hasMore={true}
+            />
+        );
+
+        expect(screen.queryByText(/You've reached the end of the multiverse!/)).not.toBeInTheDocument();
     });
 });
 
