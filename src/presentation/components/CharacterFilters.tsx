@@ -30,7 +30,7 @@ export const CharacterFilters = ({ filters, onFiltersChange, onReset }: Characte
                         variant="ghost"
                         size="sm"
                         onClick={onReset}
-                        className="text-muted-foreground hover:text-destructive transition-colors animate-fade-in"
+                        className="text-muted-foreground transition-colors animate-fade-in cursor-pointer"
                     >
                         <X className="h-4 w-4 mr-2" />
                         Clear
