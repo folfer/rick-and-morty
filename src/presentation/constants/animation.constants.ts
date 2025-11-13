@@ -1,0 +1,13 @@
+export const ANIMATION_DELAYS = {
+    FILTERS: '0.1s',
+    CARD_STAGGER: 0.05,
+    EPISODE_STAGGER: 0.03,
+    RELATED_CHARACTER_STAGGER: 0.05,
+} as const;
+
+export const SKELETON_COUNTS = {
+    CHARACTERS_GRID: 8,
+    RELATED_CHARACTERS: 4,
+    EPISODES: 8,
+} as const;
+
