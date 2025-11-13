@@ -6,6 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { Search, X } from 'lucide-react';
 import { CharacterFilterInput } from '@/domain/entities/Character';
+import { CharacterNameAutocomplete } from './CharacterNameAutocomplete';
+import { CharacterSpeciesAutocomplete } from './CharacterSpeciesAutocomplete';
 
 interface CharacterFiltersProps {
     filters: CharacterFilterInput;
@@ -37,16 +39,12 @@ export const CharacterFilters = ({ filters, onFiltersChange, onReset }: Characte
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="space-y-2">
-                    <Label htmlFor="name" className="text-foreground">Name</Label>
-                    <Input
-                        id="name"
-                        placeholder="Search by name..."
-                        value={filters.name || ''}
-                        onChange={(e) => onFiltersChange({ ...filters, name: e.target.value, page: 1 })}
-                        className="bg-background/50"
-                    />
-                </div>
+                <CharacterNameAutocomplete
+                    value={filters.name || ''}
+                    onChange={(name) => onFiltersChange({ ...filters, name, page: 1 })}
+                    id="name"
+                    className="space-y-2"
+                />
 
                 <div className="space-y-2">
                     <Label htmlFor="status" className="text-foreground">Status</Label>
@@ -68,16 +66,12 @@ export const CharacterFilters = ({ filters, onFiltersChange, onReset }: Characte
                     </Select>
                 </div>
 
-                <div className="space-y-2">
-                    <Label htmlFor="species" className="text-foreground">Species</Label>
-                    <Input
-                        id="species"
-                        placeholder="e.g., Human, Alien..."
-                        value={filters.species || ''}
-                        onChange={(e) => onFiltersChange({ ...filters, species: e.target.value, page: 1 })}
-                        className="bg-background/50"
-                    />
-                </div>
+                <CharacterSpeciesAutocomplete
+                    value={filters.species || ''}
+                    onChange={(species) => onFiltersChange({ ...filters, species, page: 1 })}
+                    id="species"
+                    className="space-y-2"
+                />
 
                 <div className="space-y-2">
                     <Label htmlFor="gender" className="text-foreground">Gender</Label>
